@@ -200,6 +200,8 @@ def main():
         return
     if not a.port:
         ap.error("need a port")
+    if not (a.ping or a.act or a.fft or a.random or a.elf):
+        ap.error("say what to run: an .elf, or --act / --fft / --random N / --ping")
     b = Board(a.port)
     if not b.ping():
         print("no answer to ping")
