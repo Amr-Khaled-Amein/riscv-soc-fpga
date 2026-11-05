@@ -8,9 +8,7 @@ the 256-point FFT accelerator from my [FFT project](https://github.com/Amr-Khale
 and the 8 MB SDRAM inside the FPGA. Programs are C compiled with GCC (or assembly),
 loaded over the USB UART.
 
-![board](docs/board.jpg)
-
-![leds](docs/leds.gif)
+![board](docs/leds.gif)
 
 *Running `sw/leds.c`: LED 5 = CPU running, a dot bounces over LEDs 0-4 on the timer
 interrupt (C, with the handler in `crt0.S`).*
