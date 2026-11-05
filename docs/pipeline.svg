@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="610" viewBox="0 0 1260 610" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e07b00"/>
+    </marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <rect width="1260" height="610" fill="#ffffff"/>
+
+  <!-- stage titles -->
+  <g font-weight="bold" text-anchor="middle" fill="#ffffff">
+    <rect x="30" y="20" width="170" height="26" rx="4" fill="#4c78a8"/><text x="115" y="38">IF</text>
+    <rect x="270" y="20" width="210" height="26" rx="4" fill="#9467bd"/><text x="375" y="38">ID</text>
+    <rect x="550" y="20" width="240" height="26" rx="4" fill="#f58518"/><text x="670" y="38">EX</text>
+    <rect x="860" y="20" width="170" height="26" rx="4" fill="#54a24b"/><text x="945" y="38">MEM</text>
+    <rect x="1100" y="20" width="140" height="26" rx="4" fill="#7f7f7f"/><text x="1170" y="38">WB</text>
+  </g>
+
+  <!-- pipeline registers -->
+  <g fill="#d9d9d9" stroke="#888">
+    <rect x="230" y="120" width="10" height="340"/>
+    <rect x="510" y="120" width="10" height="340"/>
+    <rect x="820" y="120" width="10" height="340"/>
+    <rect x="1060" y="120" width="10" height="340"/>
+  </g>
+
+  <!-- blocks -->
+  <g fill="#f7f7f7" stroke="#444" stroke-width="1.3">
+    <rect x="30" y="130" width="170" height="80" rx="3"/>
+    <rect x="30" y="260" width="170" height="140" rx="3"/>
+
+    <rect x="270" y="130" width="210" height="60" rx="3"/>
+    <rect x="270" y="210" width="210" height="60" rx="3"/>
+    <rect x="270" y="290" width="210" height="70" rx="3"/>
+    <rect x="270" y="380" width="210" height="70" rx="3"/>
+
+    <rect x="550" y="130" width="240" height="60" rx="3"/>
+    <rect x="550" y="210" width="240" height="60" rx="3"/>
+    <rect x="550" y="290" width="240" height="60" rx="3"/>
+    <rect x="550" y="370" width="240" height="80" rx="3" fill="#fff4e8" stroke="#e07b00"/>
+
+    <rect x="860" y="130" width="170" height="80" rx="3"/>
+    <rect x="860" y="240" width="170" height="110" rx="3"/>
+
+    <rect x="1100" y="130" width="140" height="80" rx="3"/>
+  </g>
+
+  <g font-size="12">
+    <text x="42" y="152" font-weight="bold">block ram</text>
+    <text x="42" y="171" font-size="11.5">or the sdram fetch buffer</text>
+    <text x="42" y="190" font-size="11" fill="#555">sync read, instr is out in ID</text>
+
+    <text x="42" y="282" font-weight="bold">next pc</text>
+    <text x="42" y="302" font-size="11.5">1. EX redirect</text>
+    <text x="42" y="321" font-size="11.5">2. stall / wait: same pc</text>
+    <text x="42" y="340" font-size="11.5">3. ID guess (jal, loop)</text>
+    <text x="42" y="359" font-size="11.5">4. pc + 4</text>
+    <text x="42" y="382" font-size="11" fill="#555">goes to the ram address</text>
+
+    <text x="282" y="152" font-weight="bold">decode</text>
+    <text x="282" y="171" font-size="11.5">illegal -> trap in EX</text>
+    <text x="282" y="232" font-weight="bold">regfile 31 x 32</text>
+    <text x="282" y="251" font-size="11.5">a WB write shows up here</text>
+    <text x="282" y="312" font-weight="bold">guess</text>
+    <text x="282" y="330" font-size="11.5">jal, backward branch: fetch</text>
+    <text x="282" y="346" font-size="11.5">the target next clock</text>
+    <text x="282" y="402" font-weight="bold">hazards</text>
+    <text x="282" y="420" font-size="11.5">load-use -> 1 stall</text>
+    <text x="282" y="436" font-size="11.5">forward selects, registered</text>
+
+    <text x="562" y="152" font-weight="bold">forward muxes + alu</text>
+    <text x="562" y="171" font-size="11.5">from MEM, else WB, else regfile</text>
+    <text x="562" y="232" font-weight="bold">branch / jalr</text>
+    <text x="562" y="251" font-size="11.5">wrong guess -> redirect, 1 bubble</text>
+    <text x="562" y="312" font-weight="bold">address adder</text>
+    <text x="562" y="331" font-size="11.5">ram address, stores write here</text>
+    <text x="562" y="392" font-weight="bold">csr + traps</text>
+    <text x="562" y="410" font-size="11.5">exceptions, interrupt, mret,</text>
+    <text x="562" y="426" font-size="11.5">fence.i: redirect to mtvec / mepc</text>
+    <text x="562" y="442" font-size="11" fill="#555">nothing after EX can trap</text>
+
+    <text x="872" y="152" font-weight="bold">block ram data</text>
+    <text x="872" y="171" font-size="11.5">align + sign extend</text>
+    <text x="872" y="190" font-size="11" fill="#555">1 clock, no wait</text>
+    <text x="872" y="262" font-weight="bold">axi4-lite master</text>
+    <text x="872" y="281" font-size="11.5">io + sdram loads / stores</text>
+    <text x="872" y="300" font-size="11.5">every stage holds still</text>
+    <text x="872" y="316" font-size="11.5">until the response is back</text>
+    <text x="872" y="336" font-size="11" fill="#555">3 - 12 clocks</text>
+
+    <text x="1112" y="152" font-weight="bold">write back</text>
+    <text x="1112" y="171" font-size="11.5">regfile write</text>
+    <text x="1112" y="190" font-size="11" fill="#555">commit trace in sim</text>
+  </g>
+
+  <!-- instruction flow -->
+  <g stroke="#333" stroke-width="1.5" fill="none">
+    <path d="M115,260 L115,212" marker-end="url(#a)"/>
+    <path d="M200,160 L268,160" marker-end="url(#a)"/>
+  </g>
+
+  <!-- ID guess -> next pc -->
+  <path d="M270,325 L202,325" stroke="#c0392b" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+
+  <!-- forwarding, in the channel above the blocks -->
+  <g stroke="#e07b00" stroke-width="1.6" fill="none">
+    <path d="M945,130 L945,92 L720,92 L720,128" marker-end="url(#ao)"/>
+    <path d="M1170,130 L1170,70 L495,70 L495,240 L482,240" marker-end="url(#ao)"/>
+    <path d="M650,70 L650,128" marker-end="url(#ao)"/>
+  </g>
+  <circle cx="650" cy="70" r="3" fill="#e07b00"/>
+  <text x="740" y="86" font-size="11" fill="#e07b00">MEM -> EX</text>
+  <text x="980" y="64" font-size="11" fill="#e07b00">WB -> EX, and WB -> regfile (read the same clock)</text>
+
+  <!-- EX redirect, down the channel left of EX and back along the bottom -->
+  <g stroke="#c0392b" stroke-width="1.6" fill="none">
+    <path d="M550,240 L535,240 L535,520 L115,520 L115,402" marker-end="url(#ar)"/>
+    <path d="M550,410 L535,410"/>
+  </g>
+  <text x="150" y="540" font-size="11" fill="#c0392b">EX redirect: wrong guess, jalr, trap, mret, fence.i (1 bubble)</text>
+
+  <!-- legend -->
+  <g font-size="11" fill="#555">
+    <line x1="560" y1="578" x2="590" y2="578" stroke="#e07b00" stroke-width="1.6"/>
+    <text x="598" y="582">forwarding</text>
+    <line x1="680" y1="578" x2="710" y2="578" stroke="#c0392b" stroke-width="1.6"/>
+    <text x="718" y="582">changes the next pc</text>
+    <rect x="840" y="570" width="10" height="16" fill="#d9d9d9" stroke="#888"/>
+    <text x="858" y="582">pipeline register</text>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+256 point fft, software on the cpu vs the accelerator
+fs_square: sw 581979 cycles, hw 7220 (core 1029), same bits, clipped
+tone_bin10: sw 581727 cycles, hw 7220 (core 1029), same bits
+two_tones: sw 581727 cycles, hw 7220 (core 1029), same bits
+noise: sw 581727 cycles, hw 7220 (core 1029), same bits
+impulse: sw 581727 cycles, hw 7220 (core 1029), same bits
+dc: sw 581727 cycles, hw 7220 (core 1029), same bits
+speedup 80.5x including the bus transfers
+all bit exact
+  signal 0: board vs python model bit exact, snr vs numpy 13.7 dB, clipped
+  signal 1: board vs python model bit exact, snr vs numpy 82.1 dB
+  signal 2: board vs python model bit exact, snr vs numpy 65.5 dB
+  signal 3: board vs python model bit exact, snr vs numpy 63.6 dB
+  signal 4: board vs python model bit exact, snr vs numpy 90.3 dB
+  signal 5: board vs python model bit exact, snr vs numpy inf dB
+exit 0, all 6 signals match the model

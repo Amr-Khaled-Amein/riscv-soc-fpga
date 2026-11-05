@@ -1,0 +1,16 @@
+hello from rv32i
+clock 27000000 Hz
+12345 * -678 = -8369910
+100000 / 7 = 14285 rem 5
+
+[exit 0, 19658 clocks = 0.73 ms]
+sort  : 150174 cycles, 119852 instructions, cpi 1.25
+crc32 : 49608 cycles, 48807 instructions, cpi 1.02
+primes: 34173 cycles, 31535 instructions, cpi 1.08
+total : 233955 cycles, 200194 instructions, cpi 1.17
+crc a7c6aa00, primes below 2000: 303, sorted
+
+[exit 0, 309079 clocks = 11.45 ms]
+20 ticks, main loop ran 89712 times, sum 9dcb74c8
+
+[exit 0, 549398 clocks = 20.35 ms]

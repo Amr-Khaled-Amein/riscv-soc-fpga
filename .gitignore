@@ -1,0 +1,6 @@
+build/
+soc/impl/
+soc/build.log
+*.gprj.user
+*.vcd
+__pycache__/

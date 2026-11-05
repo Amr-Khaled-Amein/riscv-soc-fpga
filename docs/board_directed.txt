@@ -1,0 +1,7 @@
+bus.s      bram   exit 0  PASS  6460 clocks
+bus.s      sdram  exit 0  PASS  16503 clocks
+hazards.s  bram   exit 0  PASS  176 clocks
+hazards.s  sdram  exit 0  PASS  618 clocks
+sdram.s    bram   exit 0  PASS  583 clocks
+traps.s    bram   exit 0  PASS  423 clocks
+traps.s    sdram  exit 0  PASS  1450 clocks
